@@ -16,7 +16,12 @@ Some key algorithms and data structures:
      
 4. **Topological sorting**
 
-     Many of the problems in DAGs can be solved using topological sorting and is very useful in such cases.
+     Many of the problems in DAGs can be solved using topological sorting
 
 5. **Kosaraju's algorithm**
 
+6. **Max flow algorithm**
+
+7. **Kruskal's and Prim's algorithm**
+     
+     Finding MST using union find
