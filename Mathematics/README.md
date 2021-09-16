@@ -23,3 +23,7 @@ Some key algorithms and data structures:
 5. **Nim sum game and Grundy numbers**
 
      See Nim games for how to solve such game theory problems
+
+6. **Catalan numbers**
+
+     Catalan numbers keep popping up in a variety of problems
