@@ -3,6 +3,7 @@
 Solutions to some of the sorting and searching problems that I have solved so far.
 
 Some key algorithms:
+
 **1.) Sliding window technique**:
   Note that the Sliding median question is a little unique and you would have to optimize it a little bit. Directly applying sliding window technique was giving TLE.
   
