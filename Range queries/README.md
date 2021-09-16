@@ -2,7 +2,7 @@
 
 Solutions to some of the range query problems that I have solved so far.
 
-Some key algorithms:
+Some key algorithms and data structures:
 
 1. **Segment trees**
 
