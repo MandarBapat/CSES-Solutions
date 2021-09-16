@@ -5,7 +5,8 @@ Solutions to some of the sorting and searching problems that I have solved so fa
 Some key algorithms:
 
 1. **Sliding window technique**
-   -Note that the Sliding median question is a little unique and you would have to optimize it a little bit. Directly applying sliding window technique was giving TLE.
+
+     -Note that the Sliding median question is a little unique and you would have to optimize it a little bit. Directly applying sliding window technique was giving TLE.
   
 2. **Kadane's Algorithm**
 
