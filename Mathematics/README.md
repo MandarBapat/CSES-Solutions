@@ -6,7 +6,7 @@ Some key algorithms and data structures:
 
 1. **Binary exponentiation**
 
-     One of the most useful and key algorithms for quickly evaluating large powers of a number. The idea can be extended to matrices too and is useful in calculating large Fibonacci numbers without using much space as other algorithms do.
+     One of the most useful and key algorithms for quickly evaluating large powers of a number. The idea can be extended to matrices too and is useful in calculating large Fibonacci numbers without using much space
      
 2. **Fermat's little theorem**
 
