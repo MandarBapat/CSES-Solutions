@@ -6,7 +6,7 @@ Some key algorithms and data structures:
 
 1. **Permutation and Combination**
 
-     Certain problems can be solved by analysing them using P and C and creating a general forumla for the problem in terms of the variables See two knights problem
+     Certain problems can be solved by analysing them using P and C and creating a general forumla for the problem in terms of the variables. See two knights problem
      
 2. **Simulation**
 
