@@ -10,7 +10,7 @@ Some key algorithms and data structures:
      
 2. **KMP algorithm**
 
-     Same as Z algorithm. But can be preferred over Z in some questions.
+     Serves the same purpose as the Z algorithm. But can be preferred over Z in some questions.
 
 3. **Concatenation**
 
