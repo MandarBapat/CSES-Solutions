@@ -2,34 +2,32 @@
 
 using namespace std;
 
+
+long long int cmp_mul(long long int x1, long long int y1, long long int x2, long long int y2){
+    return x1*y2 + y1*x2;
+}
+
+
 int main(){
-  long int t;
-  cin >> t;
 
-  pair<long long int, long long int> p1,p2,p3;
-  for(long int i=1;i<=t;i++){
-    long long int x,y;
-    cin >> x >> y;
-    p1 = make_pair(x,y);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-    cin >> x >> y;
-    p2 = make_pair(x,y);
+    int t;
+    cin >> t;
 
-    cin >> x >> y;
-    p3 = make_pair(x,y);
-
-    pair<long long int, long long int> v1 = {(p2.first - p1.first), (p2.second - p1.second)};
-    pair<long long int, long long int> v2 = {(p3.first - p1.first), (p3.second - p1.second)};
-
-    long long int diff = (v1.first)*(v2.second) - (v1.second)*(v2.first);
-    if(diff>0){
-      cout << "LEFT" << "\n";
+    for(int i=0;i<t;i++){
+        long long int x1, y1, x2, y2, x3, y3;
+        cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+        long long int prod = cmp_mul(x2-x1, -(y2-y1), x3-x1, y3-y1);
+        if(prod > 0){
+            cout << "LEFT\n";
+        }
+        else if(prod < 0){
+            cout << "RIGHT\n";
+        }
+        else{
+            cout << "TOUCH\n";
+        }
     }
-    else if(diff < 0){
-      cout << "RIGHT" << "\n";
-    }
-    else{
-      cout << "TOUCH" << "\n";
-    }
-  }
 }
