@@ -2,44 +2,52 @@
 
 using namespace std;
 
-int v[(int)(1e6)];
+int ans[(int)(2e5+1)];
+vector<int> tree[(int)(2e5+1)];
 
-void fill_sub(vector<int> arr[], int n, int i){
-  if(arr[i].size() == 0){
-    v[i] = 0;
-    return;
-  }
-  else{
-    int sum = 0;
-    for(auto c : arr[i]){
-      if(v[c] == -1){
-        fill_sub(arr,n,c);
-      }
-      sum = sum + v[c];
+int f(int index){
+    if(ans[index] != -1){
+        return ans[index];
     }
-    v[i] = sum + arr[i].size();
-  }
+    else{
+        if(tree[index].size() == 0){
+            ans[index] = 0;
+            return 0;
+        }
+        else{
+            int val = tree[index].size();
+            for(auto c : tree[index]){
+                val += f(c);
+            }
+            ans[index] = val;
+            return val;
+        }
+    }
 }
 
 int main(){
-  int n;
-  scanf("%d", &n);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-  vector<int> arr[n+1];
-  int temp;
 
-  for(int i=2;i<=n;i++){
-    scanf("%d", &temp);
-    arr[temp].push_back(i);
-  }
+    int n;
+    cin >> n;
 
-  for(int i=0;i<(int)(1e6);i++){
-    v[i] = -1;
-  }
+    for(int i=2;i<=n;i++){
+        int temp;
+        cin >> temp;
+        tree[temp].push_back(i);
+    }
 
-  fill_sub(arr,n,1);
+    for(int i=1;i<((int)(2e5+1));i++){
+        ans[i] = -1;
+    }
 
-  for(int i=1;i<=n;i++){
-    printf("%d ",v[i]);
-  }
+    f(1);
+
+    for(int i=1;i<=n;i++){
+        cout << ans[i] << " ";
+    }
+
+    return 0;
 }
