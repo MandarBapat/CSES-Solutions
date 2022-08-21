@@ -2,23 +2,48 @@
 
 using namespace std;
 
+#define M ((long long int)(1e9+7))
+
 int main(){
-  int n,x;
-  scanf("%d %d", &n, &x);
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-  int c[n];
-  int min1 = INT_MAX;
+    int n, x;
+    cin >> n >> x;
 
-  for(int i=0;i<n;i++){
-    scanf("%d", &c[i]);
-    min1 = min(min1, c[i]);
-  }
+    int c[n];
 
-  for(int i=1;i<min1;i++){
-    arr[i] = 0;
-  }
-  arr[min1] = 1;
+    for(int i=0;i<n;i++){
+        cin >> c[i];
+    }
 
-  
+    int ans[n][x+1];
 
+    for(int i=n-1;i>=0;i--){
+        for(int j=0;j<=x;j++){
+            if(j == 0){
+                ans[i][j] = 1;
+            }
+            else if(i == n-1){
+                if(j%c[i] == 0){
+                    ans[i][j] = 1;
+                }
+                else{
+                    ans[i][j] = 0;
+                }
+            }
+            else{
+                int val1 = ans[i+1][j];
+                int val2 = 0;
+                if( (j-c[i]) >= 0 ){
+                    val2 = ans[i][j-c[i]];
+                }
+                ans[i][j] = ((long long int)val1 + val2)%M;
+            }
+        }
+    }
+
+    cout << ans[0][x];
+
+    return 0;
 }

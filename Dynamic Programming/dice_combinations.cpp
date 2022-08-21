@@ -2,32 +2,28 @@
 
 using namespace std;
 
-long int arr[(int)(1e6+1)] = {0};
-
-
-long int count(long int n){
-
-  if(n <= 0){
-    return 0;
-  }
-  if(arr[n] != 0){
-    return arr[n];
-  }
-  else{
-    arr[n] = (count(n-1) + count(n-2) + count(n-3) + count(n-4) + count(n-5) + count(n-6))%((long long int)(1e9 + 7));
-    return arr[n];
-  }
-}
+#define M ((long long int)(1e9+7))
 
 int main(){
-  int n;
-  scanf("%d", &n);
-  arr[1] = 1;
-  arr[2] = 2;
-  arr[3] = 4;
-  arr[4] = 8;
-  arr[5] = 16;
-  arr[6] = 32;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-  printf("%lld", count(n));
+    int n;
+    cin >> n;
+
+    int* ans = (int*)malloc((n+1)*sizeof(int));
+    for(int i=1;i<=6;i++){
+        ans[i] = (int)pow(2,i-1);
+    }
+
+    for(int i=7;i<=n;i++){
+        ans[i] = 0;
+        for(int j=1;j<=6;j++){
+            ans[i] = ((long long int)ans[i] + ans[i-j])%M;
+        }
+    }
+
+    cout << ans[n];
+
+    return 0;
 }

@@ -2,52 +2,50 @@
 
 using namespace std;
 
-long int arr[1000][1000];
-
-
-long int count(int n, int p, int q){
-  if((arr[p][q] != -1)){
-    return arr[p][q];
-  }
-  else{
-    if(p == (n-1) && q < (n-1)){
-      arr[p][q] = count(p,q+1);
-      return arr[p][q];
-    }
-    else if(p < (n-1) && q==(n-1)){
-      arr[p][q] = count(p+1,q);
-      return arr[p][q];
-    }
-    else{
-      
-    }
-  }
-}
-
+#define M ((long long int)(1e9+7))
 
 int main(){
-  int n;
-  scanf("%d", &n);
-  string s;
-  for(int i=0;i<n;i++){
-    cin >> s;
-    for(int j=0;j<n;j++){
-      if(s[j] == '.'){
-        arr[i][j] = -1;
-      }
-      else{
-        arr[i][j] = 0;
-      }
+
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n;
+    cin >> n;
+
+    int dp[n][n];
+
+    char grid[n][n];
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin >> grid[i][j];
+        }
     }
-  }
 
-  arr[n-1][n-1] = 0;
-  if(arr[n-1][n-2] != 0){
-    arr[n-1][n-2] = 1;
-  }
-  if(arr[n-2][n-1] != 0){
-    arr[n-2][n-1] = 1;
-  }
+    for(int i=n-1;i>=0;i--){
+        for(int j=n-1;j>=0;j--){
+            if(grid[i][j] == '*'){
+                dp[i][j] = 0;
+            }
+            else if( (i == n-1) && (j == n-1) ){
+                dp[i][j] = 1;
+            }
+            else{
+                int val1 = 0;
+                int val2 = 0;
+                if( (i+1) < n ){
+                    val1 = dp[i+1][j];
+                }
+                if( (j+1) < n ){
+                    val2 = dp[i][j+1];
+                }
 
-  printf("%ld", count(n, 0, 0));
+                dp[i][j] = ( (long long int)val1 + val2 )%M;
+            }
+        }
+    }
+
+    cout << dp[0][0];
+
+    return 0;
 }

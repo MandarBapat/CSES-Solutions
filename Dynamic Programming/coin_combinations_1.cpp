@@ -2,47 +2,50 @@
 
 using namespace std;
 
-long int arr[(int)(1e6+1)];
+#define M ((long long int)(1e9+7))
 
-long int min_count(int sum, int c[], int n){
-  if(arr[sum] != -1){
-    return arr[sum];
-  }
-  else{
-    long int sum2 = 0;
-    for(int i=0;i<n;i++){
-      if(sum-c[i] >= 0){
-        sum2 = sum2 + min_count(sum-c[i],c,n);
-      }
+int n;
+int c[100];
+int ans[(int)(1e6+1)];
+
+int dp(int x){
+    if(x < 0){
+        return 0;
     }
-    arr[sum] = sum2%((long int)(1e9+7));
-    return arr[sum];
-  }
+    else if(ans[x] != -1){
+        return ans[x];
+    }
+    else{
+        long long int rv = 0;
+        for(int i=0;i<n;i++){
+            rv = (rv + dp(x-c[i]))%M;
+        }
+        ans[x] = rv;
+        return rv;
+    }
 }
 
-
 int main(){
-  int n,x;
-  scanf("%d %d", &n, &x);
 
-  int c[n];
-  int min1 = INT_MAX;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
 
-  for(int i=0;i<((int)(1e6+1));i++){
-    arr[i] = -1;
-  }
+    int x;
+    cin >> n >> x;
 
-  for(int i=0;i<n;i++){
-    scanf("%d", &c[i]);
-    min1 = min(min1, c[i]);
-  }
+    for(int i=0;i<=(1e6);i++){
+        ans[i] = -1;
+    }
+    ans[0] = 1;
 
-  for(int i=0;i<min1;i++){
-    arr[i] = 0;
-  }
+    int min1 = INT_MAX;
+    for(int i=0;i<n;i++){
+        cin >> c[i];
+        min1 = min(min1, c[i]);
+    }
+    ans[min1] = 1;
 
-  arr[0] = 1;
-  arr[min1] = 1;
+    cout << dp(x);
 
-  printf("%ld", min_count(x, c, n));
+    return 0;
 }
